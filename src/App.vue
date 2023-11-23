@@ -38,6 +38,14 @@ const items = ref([
     soldOut: false
 }
 ])
+
+/**
+ * 価格を3桁ごとのカンマ付きで返す
+ * @param {number} price 価格
+ */
+ function pricePrefix(price) {
+  return price.toLocaleString()
+}
 </script>
 
 <template>
@@ -62,7 +70,7 @@ const items = ref([
         <div class="description">
           <h2>{{ item.name }}</h2>
           <p>{{ item.description }}</p>
-          <span>¥<span class="price">{{ item.price.toLocaleString() }}</span></span>
+          <span>¥<span class="price">{{ pricePrefix(item.price) }}</span></span>
         </div>
       </div>
     </template>
