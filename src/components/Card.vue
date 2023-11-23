@@ -1,4 +1,26 @@
-<script>
+<script setup>
+defineProps({
+  name: {
+    type: String,
+    default: '',
+    required: false
+  },
+  description: {
+    type: String,
+    default: '',
+    required: false
+  },
+  price: {
+    type: Number,
+    default: 0,
+    required: false
+  },
+  image: {
+    type: String,
+    default: '',
+    required: false
+  },
+});
 /**
  * 価格を3桁ごとのカンマ付きで返す
  * @param {number} price 価格
@@ -11,13 +33,13 @@
 <template>
 <div class="thumbnail">
     <img
-      :src="item.image"
+      :src="image"
       alt="">
   </div>
   <div class="description">
-    <h2>{{ item.name }}</h2>
-    <p>{{ item.description }}</p>
-    <span>¥<span class="price">{{ pricePrefix(item.price) }}</span></span>
+    <h2>{{ name }}</h2>
+    <p>{{ description }}</p>
+    <span>¥<span class="price">{{ pricePrefix(price) }}</span></span>
   </div>
 </template>
 

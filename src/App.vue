@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import Card from '.components/Card.vue'
+import Card from './components/Card.vue'
 const items = ref([
 {
     id: 1,
@@ -61,7 +61,11 @@ const items = ref([
         class="item"
         :class="{'selected-item':item.selected}"
         @click="item.selected = !item.selected">
-      <Card />  
+      <Card
+        :image="item.image"
+        :name="item.name"
+        :description="item.description"
+        :price="item.price"/>  
       </div>
     </template>
   </main>
