@@ -51,7 +51,7 @@ const items = ref([
     <template
       v-for="item in items"
       :key="item.id">
-      <div 
+      <div
         v-if="!item.soldOut"
         class="item">
         <div class="thumbnail">
@@ -62,7 +62,7 @@ const items = ref([
         <div class="description">
           <h2>{{ item.name }}</h2>
           <p>{{ item.description }}</p>
-          <span>¥<span class="price">{{ item.price }}</span></span>
+          <span>¥<span class="price">{{ item.price.toLocaleString() }}</span></span>
         </div>
       </div>
     </template>
