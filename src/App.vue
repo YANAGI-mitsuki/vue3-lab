@@ -4,16 +4,25 @@ import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+  <header class="header">
+    <img
+      src="/images/logo.svg"
+      alt="">
+    <h1>Vue.js ハンズオン</h1>
   </header>
-
-  <main>
-    <TheWelcome />
+  <main class="main">
+    <div class="item">
+      <div class="thumbnail">
+        <img
+          :src="item.image"
+          alt="">
+      </div>
+      <div class="description">
+        <h2>{{ item.name }}</h2>
+        <p>{{ item.description }}</p>
+        <span>¥<span class="price">{{ item.price }}</span></span>
+      </div>
+    </div>
   </main>
 </template>
 
