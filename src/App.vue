@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-const item = ref([
+const items = ref([
 {
     id: 1,
     name: 'アボカドソースバケット',
@@ -33,8 +33,7 @@ const item = ref([
     price: 670,
     image: '/images/item4.jpg'
 }
-]
-  )
+])
 </script>
 
 <template>
@@ -45,18 +44,22 @@ const item = ref([
     <h1>Vue.js ハンズオン</h1>
   </header>
   <main class="main">
-    <div class="item">
-      <div class="thumbnail">
-        <img
-          :src="item.image"
-          alt="">
+    <template
+      v-for="item in items"
+      :key="item.id">
+      <div class="item">
+        <div class="thumbnail">
+          <img
+            :src="item.image"
+            alt="">
+        </div>
+        <div class="description">
+          <h2>{{ item.name }}</h2>
+          <p>{{ item.description }}</p>
+          <span>¥<span class="price">{{ item.price }}</span></span>
+        </div>
       </div>
-      <div class="description">
-        <h2>{{ item.name }}</h2>
-        <p>{{ item.description }}</p>
-        <span>¥<span class="price">{{ item.price }}</span></span>
-      </div>
-    </div>
+    </template>
   </main>
 </template>
 
