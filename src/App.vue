@@ -1,6 +1,13 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from 'vue'
+const item = ref({
+    id: 1,
+    name: 'アボカドディップバケット',
+    description:
+      '刻んだ野菜をアボカドと混ぜてディップに。こんがり焼いたバゲットとお召し上がりください。',
+    price: 480,
+    image: '/images/item1.jpg'
+})
 </script>
 
 <template>
