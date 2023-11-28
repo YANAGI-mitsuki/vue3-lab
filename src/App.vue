@@ -75,6 +75,9 @@ const items = ref([
         :description="item.description"
         :price="item.price"/>  
       </div>
+      <div v-else>
+      売り切れです<button type="button" @click="stockItem(item)">入荷</button>
+      </div>
     </template>
   </main>
 </template>
