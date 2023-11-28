@@ -43,6 +43,13 @@ const items = ref([
     selected: false
 }
 ])
+/**
+ * 在庫のある商品数を返す
+ */
+ function stockQuantity() {
+  return items.value.filter(item => item.soldOut === false ).length
+}
+
 </script>
 
 <template>
