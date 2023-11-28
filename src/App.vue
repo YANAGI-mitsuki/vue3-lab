@@ -52,6 +52,7 @@ const items = ref([
       alt="">
     <h1>Vue.js ハンズオン</h1>
   </header>
+  <div>商品数：{{ stockQuantity() }}</div>
   <main class="main">
     <template
       v-for="item in items"
