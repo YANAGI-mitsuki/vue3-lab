@@ -1,18 +1,18 @@
 <script setup>
 import { ref } from 'vue'
-import Card from './components/Card.vue'
+
 const items = ref([
-{
+  {
     id: 1,
-    name: 'アボカドソースバケット',
+    name: 'アボカドディップバケット',
     description:
-      '刻んだ野菜をアボカドと混ぜ、優しい味のソースに。こんがり焼いたバゲットとお召し上がりください。',
-    price: 320,
+      '刻んだ野菜をアボカドと混ぜてディップに。こんがり焼いたバゲットとお召し上がりください。',
+    price: 480,
     image: '/images/item1.jpg',
     soldOut: false,
     selected: false
-},
-{
+  },
+  {
     id: 2,
     name: 'あの日夢見たホットケーキ',
     description:
@@ -21,8 +21,8 @@ const items = ref([
     image: '/images/item2.jpg',
     soldOut: false,
     selected: false
-},
-{
+  },
+  {
     id: 3,
     name: 'HOP WTR',
     description:
@@ -31,8 +31,8 @@ const items = ref([
     image: '/images/item3.jpg',
     soldOut: true,
     selected: false
-},
-{
+  },
+  {
     id: 4,
     name: 'チーズフレンチフライ',
     description:
@@ -41,15 +41,16 @@ const items = ref([
     image: '/images/item4.jpg',
     soldOut: false,
     selected: false
-}
+  }
 ])
-/**
- * 在庫のある商品数を返す
- */
- function stockQuantity() {
-  return items.value.filter(item => item.soldOut === false ).length
-}
 
+/**
+ * 価格を3桁ごとのカンマ付きで返す
+ * @param {number} price 価格
+ */
+function pricePrefix(price) {
+  return price.toLocaleString()
+}
 </script>
 
 <template>
@@ -59,7 +60,6 @@ const items = ref([
       alt="">
     <h1>Vue.js ハンズオン</h1>
   </header>
-  <div>商品数：{{ stockQuantity() }}</div>
   <main class="main">
     <template
       v-for="item in items"
@@ -67,16 +67,18 @@ const items = ref([
       <div
         v-if="!item.soldOut"
         class="item"
-        :class="{'selected-item':item.selected}"
+        :class="{ 'selected-item': item.selected }"
         @click="item.selected = !item.selected">
-      <Card
-        :image="item.image"
-        :name="item.name"
-        :description="item.description"
-        :price="item.price"/>  
-      </div>
-      <div v-else>
-      売り切れです<button type="button" @click="stockItem(item)">入荷</button>
+        <div class="thumbnail">
+          <img
+            :src="item.image"
+            alt="">
+        </div>
+        <div class="description">
+          <h2>{{ item.name }}</h2>
+          <p>{{ item.description }}</p>
+          <span>¥<span class="price">{{ pricePrefix(item.price) }}</span></span>
+        </div>
       </div>
     </template>
   </main>
@@ -135,7 +137,36 @@ body {
   transform: scale(1.05);
 }
 
+.item > div.thumbnail > img {
+  width: 100%;
+  height: calc(100%);
+  object-fit: cover;
+}
+
+.item > div.description {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.item > div.description > p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.item > div.description > span {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.item > div.description > span > .price {
+  font-size: 28px;
+  font-weight: bold;
+}
+
 .selected-item {
-  background-color: #e3f2fd;
+  background: #e3f2fd;
 }
 </style>
