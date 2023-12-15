@@ -63,10 +63,14 @@ const items = ref([
         :class="{ 'selected-item': item.selected }"
         @click="item.selected = !item.selected">
         <Card
+          :id="item.id"
           :image="item.image"
           :name="item.name"
-          :description="item.description"
-          :price="item.price" />
+          :price="item.price">
+          <template #body>
+            <p>{{ item.description }}</p>
+          </template>
+        </Card>
       </div>
     </template>
   </main>
